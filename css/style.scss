@@ -1,0 +1,99 @@
+$bg-color: #212121;
+$box-bg: #303030;
+$font-color: #fff;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: $bg-color;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: $font-color;
+  font-size: 24px;
+}
+
+#logo{
+  margin-bottom: 20px;
+  width: 50px;
+}
+
+.chatbox {
+  background-color: $box-bg;
+  height: 80vh;
+  width: 60vw;
+  position: relative;
+  border-radius: 2em;
+  overflow-y: auto;
+  padding-bottom: 50px;
+
+  .input-container {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    #input-box {
+      background-color: $box-bg;
+      font-family: Arial, Helvetica, sans-serif;
+      width: 78%;
+      margin: 0 30px 40px 30px;
+      border: transparent;
+      
+      color: #fff;
+      font-size: 16px;
+      border-top: 2px solid #444;
+      padding: 10px 0 0 0;
+      resize: none;
+      overflow-y: auto;
+      min-height: 40px;
+      max-height: 250px;
+    }
+
+    #input-box:focus {
+      outline: none;
+    }
+
+    #attach-button {
+      background-color: #555;
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      margin: 0 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    #attach-button:hover {
+      background-color: #777;
+    }
+
+    #send-button {
+      background-color: #555;
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      margin: 0 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    #send-button:hover {
+      background-color: #777;
+    }
+  }
+}
+
