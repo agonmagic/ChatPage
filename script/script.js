@@ -1,4 +1,3 @@
-// Get UI elements
 const attachBtn = document.getElementById("attach-button");
 const sendBtn = document.getElementById("send-button");
 const messageInput = document.getElementById("input-box"); 
@@ -41,6 +40,7 @@ function sendMessage() {
 
     let messageElement = document.createElement("div");
     messageElement.classList.add("message");
+    messageElement.classList.add("sent");
 
     if (message) {
         messageElement.textContent = message;
@@ -61,11 +61,27 @@ function sendMessage() {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-sendBtn.addEventListener("click", sendMessage);
+sendBtn.addEventListener("click", () => {
+    sendMessage();
+    setTimeout(botMsg, 1000);
+});
 
 messageInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
         sendMessage();
+        setTimeout(botMsg, 1000);
     }
 });
+
+
+function botMsg() {
+    let botMessage = "This is a bot message, and its content will be generated through AI.";
+    let msgElement = document.createElement("div");
+    msgElement.classList.add("message");
+    msgElement.classList.add("received");
+    msgElement.textContent = botMessage;
+
+    chatBox.appendChild(msgElement);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}

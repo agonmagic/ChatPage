@@ -10,7 +10,7 @@ $font-color: #fff;
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: $bg-color;
+  background-color: $box-bg;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -26,13 +26,44 @@ body {
 }
 
 .chatbox {
-  background-color: $box-bg;
+  background-color: $bg-color;
   height: 80vh;
   width: 60vw;
   position: relative;
   border-radius: 2em;
-  overflow-y: auto;
   padding-bottom: 50px;
+
+  .messages{
+    overflow-y: auto;
+    padding: 2em 2em;
+    height: auto;
+    flex-grow: 1;
+    max-height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column
+  }
+
+  .message{
+    width: fit-content;
+    max-width: 300px;
+    min-width: 50px;
+    word-wrap: break-word;
+    height: auto;
+    background-color: #333;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px 0;
+  }
+
+  .sent{
+    align-self: flex-end;
+  }
+
+  .received{
+    align-self: flex-start;
+  }
 
   .input-container {
     position: absolute;
@@ -43,7 +74,7 @@ body {
     justify-content: center;
 
     #input-box {
-      background-color: $box-bg;
+      background-color: $bg-color;
       font-family: Arial, Helvetica, sans-serif;
       width: 78%;
       margin: 0 30px 40px 30px;
