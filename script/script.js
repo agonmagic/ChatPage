@@ -233,7 +233,7 @@ function updateMessageStyles() {
     if (body.classList.contains('light-mode')) {
         messages.forEach(msg => {
             msg.style.backgroundColor = "#727d73";
-            msg.style.color = "black";
+            msg.style.color = "white";
         });
     } else {
         messages.forEach(msg => {
