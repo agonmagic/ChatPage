@@ -27,6 +27,9 @@ function updateRemoveButtonColors() {
 themeToggleBtn.addEventListener('click', () => {
     body.classList.toggle('light-mode');
     const messages = document.querySelectorAll(".message");
+    messages.forEach(msg => {
+        msg.style.color = "white";
+    });
 
     if (body.classList.contains('light-mode')) {
         body.style.backgroundColor = "#ffffff";
@@ -34,8 +37,9 @@ themeToggleBtn.addEventListener('click', () => {
         chatbox.style.backgroundColor = "#AAB99A";
         down.style.backgroundColor = "#AAB99A";
         messageInput.style.backgroundColor = "#AAB99A";
-        messageInput.style.color = "white";
+        messageInput.style.color = "black";
         uploadsBox.style.backgroundColor = "#AAB99A";
+        uploadsBox.style.color = "black";
 
         attachBtn.style.backgroundColor = "#727d73";
         attachBtn.style.color = "white";
@@ -44,7 +48,6 @@ themeToggleBtn.addEventListener('click', () => {
 
         messages.forEach(msg => {
             msg.style.backgroundColor = "#727d73";
-            msg.style.color = "white";
         });
 
         themeToggleBtn.src = './images/dark-mode.png';
@@ -57,6 +60,7 @@ themeToggleBtn.addEventListener('click', () => {
         messageInput.style.backgroundColor = "#212121";
         messageInput.style.color = "white";
         uploadsBox.style.backgroundColor = "#212121";
+        uploadsBox.style.color = "white";
 
         attachBtn.style.backgroundColor = "#303030";
         attachBtn.style.color = "white";
@@ -65,7 +69,6 @@ themeToggleBtn.addEventListener('click', () => {
 
         messages.forEach(msg => {
             msg.style.backgroundColor = "#303030";
-            msg.style.color = "white";
         });
 
         themeToggleBtn.src = './images/light-mode.png';
@@ -182,7 +185,7 @@ function sendMessage() {
         fileLink.href = URL.createObjectURL(file);
         fileLink.textContent = `📎 ${file.name}`;
         fileLink.style.display = "block";
-        fileLink.style.color = "white";
+        fileLink.style.color = body.classList.contains('light-mode') ? "black" : "white";
         fileLink.download = file.name;
 
         messageElement.appendChild(fileLink);
