@@ -1,9 +1,11 @@
 const attachBtn = document.getElementById("attach-button");
 const sendBtn = document.getElementById("send-button");
-const messageInput = document.getElementById("input-box"); 
-const chatBox = document.querySelector(".messages"); 
+const messageInput = document.getElementById("input-box");
+const chatBox = document.querySelector(".messages");
+const uploadsBox = document.getElementById("uploads");
 
 let selectedFile = null;
+let fileElement = null;
 
 attachBtn.addEventListener("click", () => {
     let fileInput = document.createElement("input");
@@ -13,15 +15,23 @@ attachBtn.addEventListener("click", () => {
     fileInput.addEventListener("change", function () {
         if (fileInput.files.length > 0) {
             selectedFile = fileInput.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function (event) {
-                const fileData = event.target.result;
-                localStorage.setItem("uploadedFile", fileData);
-                alert("File saved to web storage!");
-            };
-
-            reader.readAsDataURL(selectedFile);
+            
+            fileElement = document.createElement("div");
+            fileElement.classList.add("upload-item");
+            fileElement.textContent = `📎 ${selectedFile.name}`;
+            
+            let removeBtn = document.createElement("button");
+            removeBtn.innerHTML = "&times;";
+            removeBtn.classList.add("remove");
+            removeBtn.style.marginLeft = "10px";
+            removeBtn.addEventListener("click", () => {
+                selectedFile = null;
+                fileElement.remove();
+                fileElement = null;
+            });
+            
+            fileElement.appendChild(removeBtn);
+            uploadsBox.appendChild(fileElement);
         }
     });
 
@@ -29,31 +39,50 @@ attachBtn.addEventListener("click", () => {
     fileInput.click();
 });
 
+sendBtn.addEventListener("click", () => {
+    sendMessage();
+    loadingMessage();
+    setTimeout(botMsg, 2000);
+});
+
+messageInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+        loadingMessage();
+        setTimeout(botMsg, 2000);
+    }
+});
+
 function sendMessage() {
     let message = messageInput.value.trim();
-    let savedFile = localStorage.getItem("uploadedFile");
-
-    if (message === "" && !savedFile) {
+    
+    if (!message && !selectedFile) {
         alert("Type a message or attach a file!");
         return;
     }
 
     let messageElement = document.createElement("div");
-    messageElement.classList.add("message");
-    messageElement.classList.add("sent");
-
+    messageElement.classList.add("message", "sent");
+    
     if (message) {
         messageElement.textContent = message;
     }
 
-    if (savedFile) {
+    if (selectedFile) {
         let fileLink = document.createElement("a");
-        fileLink.href = savedFile;
-        fileLink.textContent = "📎 Attached File";
+        fileLink.href = URL.createObjectURL(selectedFile);
+        fileLink.textContent = `📎 ${selectedFile.name}`;
         fileLink.style.display = "block";
+        fileLink.style.color = "white";
+        fileLink.download = selectedFile.name;
 
         messageElement.appendChild(fileLink);
-        localStorage.removeItem("uploadedFile");
+        selectedFile = null;
+        if (fileElement) {
+            fileElement.remove();
+            fileElement = null;
+        }
     }
 
     chatBox.appendChild(messageElement);
@@ -61,27 +90,25 @@ function sendMessage() {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-sendBtn.addEventListener("click", () => {
-    sendMessage();
-    setTimeout(botMsg, 1000);
-});
-
-messageInput.addEventListener("keypress", function (event) {
-    if (event.key === "Enter" && !event.shiftKey) {
-        event.preventDefault();
-        sendMessage();
-        setTimeout(botMsg, 1000);
-    }
-});
-
-
 function botMsg() {
-    let botMessage = "This is a bot message, and its content will be generated through AI.";
+    let botMessage = "This is a bot response. This will be generated through a trained AI. Anything you say can and will be used against you in the court of law. Whatever";
+    let botElement = document.createElement("div");
+    botElement.classList.add("message", "received");
+    botElement.textContent = botMessage;
+    chatBox.appendChild(botElement);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function loadingMessage() {
+    let loading = "";
     let msgElement = document.createElement("div");
-    msgElement.classList.add("message");
+    msgElement.classList.add("blank");
     msgElement.classList.add("received");
-    msgElement.textContent = botMessage;
+    msgElement.textContent = loading;
 
     chatBox.appendChild(msgElement);
     chatBox.scrollTop = chatBox.scrollHeight;
+    setTimeout(() => {
+        msgElement.classList.add("hide");
+    }, 2000);
 }

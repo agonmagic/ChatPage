@@ -4,6 +4,19 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #303030;
@@ -19,6 +32,14 @@ body {
 #logo {
   margin-bottom: 20px;
   width: 50px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 .chatbox {
@@ -38,7 +59,9 @@ body {
   display: flex;
   flex-direction: column;
 }
-.chatbox .message {
+.chatbox .message,
+.chatbox .blank {
+  width: -moz-fit-content;
   width: fit-content;
   max-width: 300px;
   min-width: 50px;
@@ -51,21 +74,61 @@ body {
   font-size: 16px;
   margin: 5px 0;
 }
+.chatbox .blank {
+  animation: blink 2s;
+}
+@keyframes blink {
+  0% {
+    background-color: #333;
+  }
+  25% {
+    background-color: gray;
+  }
+  50% {
+    background-color: #333;
+  }
+  75% {
+    background-color: gray;
+  }
+  100% {
+    background-color: #333;
+  }
+}
 .chatbox .sent {
   align-self: flex-end;
 }
 .chatbox .received {
   align-self: flex-start;
 }
-.chatbox .input-container {
+.chatbox .down {
   position: absolute;
   bottom: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+}
+.chatbox .down .remove {
+  background-color: #212121;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+.chatbox .down .remove:hover {
+  cursor: pointer;
+}
+.chatbox .down #uploads {
+  bottom: 0;
+  padding: 5px 100px;
+  font-size: 16px;
+}
+.chatbox .down .input-container {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
 }
-.chatbox .input-container #input-box {
+.chatbox .down #input-box {
   background-color: #212121;
   font-family: Arial, Helvetica, sans-serif;
   width: 78%;
@@ -80,10 +143,10 @@ body {
   min-height: 40px;
   max-height: 250px;
 }
-.chatbox .input-container #input-box:focus {
+.chatbox .down #input-box:focus {
   outline: none;
 }
-.chatbox .input-container #attach-button {
+.chatbox .down #attach-button {
   background-color: #555;
   color: white;
   border: none;
@@ -94,10 +157,10 @@ body {
   cursor: pointer;
   font-size: 18px;
 }
-.chatbox .input-container #attach-button:hover {
+.chatbox .down #attach-button:hover {
   background-color: #777;
 }
-.chatbox .input-container #send-button {
+.chatbox .down #send-button {
   background-color: #555;
   color: white;
   border: none;
@@ -108,6 +171,6 @@ body {
   cursor: pointer;
   font-size: 18px;
 }
-.chatbox .input-container #send-button:hover {
+.chatbox .down #send-button:hover {
   background-color: #777;
 }
