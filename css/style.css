@@ -29,6 +29,17 @@ body {
   font-size: 24px;
 }
 
+#themechange {
+  width: 30px;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+
+#themechange:hover {
+  cursor: pointer;
+}
+
 #logo {
   margin-bottom: 20px;
   width: 50px;
@@ -49,8 +60,10 @@ body {
   position: relative;
   border-radius: 1em;
   padding-bottom: 50px;
+  overflow: hidden;
 }
-.chatbox .messages {
+
+.messages {
   overflow-y: auto;
   padding: 2em 2em;
   height: auto;
@@ -58,9 +71,12 @@ body {
   max-height: calc(100% - 60px);
   display: flex;
   flex-direction: column;
+  border-radius: 1em;
 }
-.chatbox .message,
-.chatbox .blank {
+
+.message,
+.blank {
+  width: -moz-fit-content;
   width: fit-content;
   max-width: 300px;
   min-width: 50px;
@@ -73,9 +89,11 @@ body {
   font-size: 16px;
   margin: 5px 0;
 }
-.chatbox .blank {
+
+.blank {
   animation: blink 2s;
 }
+
 @keyframes blink {
   0% {
     background-color: #333;
@@ -93,41 +111,51 @@ body {
     background-color: #333;
   }
 }
-.chatbox .sent {
+.sent {
   align-self: flex-end;
 }
-.chatbox .received {
+
+.received {
   align-self: flex-start;
 }
-.chatbox .down {
+
+.down {
   position: absolute;
   bottom: 0;
   display: flex;
   width: 100%;
   justify-content: center;
   flex-direction: column;
-}
-.chatbox .down .remove {
   background-color: #212121;
+}
+
+.remove {
+  background-color: transparent;
   border: none;
   color: white;
   font-size: 16px;
 }
-.chatbox .down .remove:hover {
+
+.remove:hover {
   cursor: pointer;
 }
-.chatbox .down #uploads {
+
+#uploads {
   bottom: 0;
   padding: 5px 100px;
   font-size: 16px;
+  background-color: #212121;
+  width: auto;
 }
-.chatbox .down .input-container {
+
+.input-container {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
 }
-.chatbox .down #input-box {
+
+#input-box {
   background-color: #212121;
   font-family: Arial, Helvetica, sans-serif;
   width: 78%;
@@ -142,10 +170,12 @@ body {
   min-height: 40px;
   max-height: 250px;
 }
-.chatbox .down #input-box:focus {
+
+#input-box:focus {
   outline: none;
 }
-.chatbox .down #attach-button {
+
+#attach-button {
   background-color: #555;
   color: white;
   border: none;
@@ -156,10 +186,12 @@ body {
   cursor: pointer;
   font-size: 18px;
 }
-.chatbox .down #attach-button:hover {
+
+#attach-button:hover {
   background-color: #777;
 }
-.chatbox .down #send-button {
+
+#send-button {
   background-color: #555;
   color: white;
   border: none;
@@ -170,6 +202,38 @@ body {
   cursor: pointer;
   font-size: 18px;
 }
-.chatbox .down #send-button:hover {
+
+#send-button:hover {
   background-color: #777;
+}
+
+@media screen and (max-width: 1200px) {
+  body {
+    font-size: 16px;
+  }
+  #themechange {
+    width: 24px;
+  }
+  #logo {
+    width: 30px;
+  }
+  .chatbox {
+    background-color: #212121;
+    height: 80vh;
+    width: 90vw;
+    position: relative;
+    border-radius: 1em;
+    padding-bottom: 50px;
+    overflow: hidden;
+  }
+  .messages {
+    padding: 1em;
+  }
+  .message,
+  .blank {
+    max-width: 200px;
+  }
+  #uploads {
+    padding: 5px 0;
+  }
 }
