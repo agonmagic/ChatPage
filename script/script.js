@@ -31,6 +31,7 @@ attachBtn.addEventListener("click", () => {
             });
             
             fileElement.appendChild(removeBtn);
+            // fileElement.style.margin("0 10px");
             uploadsBox.appendChild(fileElement);
         }
     });
@@ -39,20 +40,26 @@ attachBtn.addEventListener("click", () => {
     fileInput.click();
 });
 
-sendBtn.addEventListener("click", () => {
-    sendMessage();
-    loadingMessage();
-    setTimeout(botMsg, 2000);
+sendBtn.addEventListener("click", async () => {
+    handleSend();
 });
 
 messageInput.addEventListener("keypress", function (event) {
-    if (event.key === "Enter" && !event.shiftKey) {
+    if (event.key === "Enter" && !event.shiftKey && !sendBtn.disabled) {
         event.preventDefault();
-        sendMessage();
-        loadingMessage();
-        setTimeout(botMsg, 2000);
+        handleSend();
     }
 });
+
+async function handleSend() {
+    sendBtn.disabled = true;
+    sendMessage();
+    await new Promise(resolve => setTimeout(resolve, 100));
+    loadingMessage();
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    botMsg();
+    sendBtn.disabled = false;
+}
 
 function sendMessage() {
     let message = messageInput.value.trim();

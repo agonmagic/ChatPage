@@ -47,7 +47,7 @@ body {
   height: 80vh;
   width: 60vw;
   position: relative;
-  border-radius: 2em;
+  border-radius: 1em;
   padding-bottom: 50px;
 }
 .chatbox .messages {
@@ -61,7 +61,6 @@ body {
 }
 .chatbox .message,
 .chatbox .blank {
-  width: -moz-fit-content;
   width: fit-content;
   max-width: 300px;
   min-width: 50px;
