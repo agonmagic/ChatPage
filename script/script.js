@@ -15,7 +15,7 @@ function updateRemoveButtonColors() {
     const removeButtons = document.querySelectorAll(".remove");
     if (body.classList.contains('light-mode')) {
         removeButtons.forEach(button => {
-            button.style.color = "black"; 
+            button.style.color = "white"; 
         });
     } else {
         removeButtons.forEach(button => {
@@ -39,7 +39,7 @@ themeToggleBtn.addEventListener('click', () => {
         messageInput.style.backgroundColor = "#AAB99A";
         messageInput.style.color = "black";
         uploadsBox.style.backgroundColor = "#AAB99A";
-        uploadsBox.style.color = "black";
+        uploadsBox.style.color = "white";
 
         attachBtn.style.backgroundColor = "#727d73";
         attachBtn.style.color = "white";
@@ -92,7 +92,7 @@ attachBtn.addEventListener("click", () => {
                 let fileElement = document.createElement("div");
                 fileElement.classList.add("upload-item");
                 fileElement.style.display = "inline-block";
-                fileElement.style.margin = "0 5px";
+                fileElement.style.margin = "3px 5px";
                 fileElement.textContent = `📎 ${file.name}`;
                 
                 let removeBtn = document.createElement("button");
@@ -105,9 +105,15 @@ attachBtn.addEventListener("click", () => {
                 });
 
                 if (body.classList.contains('light-mode')) {
-                    removeBtn.style.color = "black";
+                    removeBtn.style.color = "white";
+                    fileElement.style.backgroundColor = "#727d73";
+                    fileElement.style.padding = "3px 7px";
+                    fileElement.style.borderRadius = "10px";
                 } else {
                     removeBtn.style.color = "white";
+                    fileElement.style.backgroundColor = "#555";
+                    fileElement.style.padding = "3px 7px";
+                    fileElement.style.borderRadius = "10px";
                 }
                 
                 fileElement.appendChild(removeBtn);
@@ -233,7 +239,7 @@ function updateMessageStyles() {
     if (body.classList.contains('light-mode')) {
         messages.forEach(msg => {
             msg.style.backgroundColor = "#727d73";
-            msg.style.color = "white";
+            msg.style.color = "black";
         });
     } else {
         messages.forEach(msg => {
