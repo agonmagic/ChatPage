@@ -124,7 +124,6 @@ function botMsg() {
 function loadingMessage() {
     let msgElement = document.createElement("div");
     msgElement.classList.add("blank", "received");
-    msgElement.textContent = "...";
     chatBox.appendChild(msgElement);
     chatBox.scrollTop = chatBox.scrollHeight;
 

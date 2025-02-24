@@ -17,6 +17,10 @@
   border-radius: 10px;
 }
 
+.light-mode ::-webkit-scrollbar-thumb {
+  background-color: #727d73;
+}
+
 body {
   background-color: #212121;
   color: #fff;
