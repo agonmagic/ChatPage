@@ -1,6 +1,10 @@
-$bg-color: #212121;
-$box-bg: #303030;
-$font-color: #fff;
+$dark-bg: #212121;
+$dark-box-bg: #303030;
+$dark-font-color: #fff;
+
+$light-bg: #ffffff;
+$light-box-bg: #AAB99A;
+$light-font-color: #000;
 
 * {
   margin: 0;
@@ -22,15 +26,78 @@ $font-color: #fff;
 }
 
 body {
+  background-color: $dark-bg;
+  color: $dark-font-color;
+  transition: background-color 0.3s, color 0.3s;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: $box-bg;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: $font-color;
   font-size: 24px;
+
+  &.light-mode {
+    background-color: $light-bg;
+    color: $light-font-color;
+  }
+}
+
+.chatbox, .down, #input-box, #uploads {
+  background-color: $dark-box-bg;
+  transition: background-color 0.3s;
+
+  .light-mode & {
+    background-color: $light-box-bg;
+  }
+}
+
+.message {
+  background-color: #555;
+  transition: background-color 0.3s;
+
+  .light-mode & {
+    background-color: #727d73;
+    color: white;
+  }
+}
+
+#attach-button, #send-button {
+  background-color: #555;
+  color: white;
+  transition: background-color 0.3s;
+
+  .light-mode & {
+    background-color: #727d73;
+    color: white;
+  }
+}
+
+.upload-item {
+  margin: 3px 5px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  background-color: #555;
+  color: white;
+  transition: background-color 0.3s;
+  display: inline-block;
+  
+
+  .light-mode & {
+    background-color: #727d73;
+  }
+}
+
+.message-file{
+  color: white;
+  display: block;
+  
+}
+
+#input-box {
+  .light-mode & {
+    color: black;
+  }
 }
 
 #themechange {
@@ -58,7 +125,7 @@ body {
 }
 
 .chatbox {
-  background-color: $bg-color;
+  background-color: $dark-box-bg;
   height: 80vh;
   width: 60vw;
   position: relative;
@@ -85,7 +152,7 @@ body {
   min-width: 50px;
   word-wrap: break-word;
   height: auto;
-  background-color: #333;
+  background-color: #555;
   color: white;
   border-radius: 10px;
   padding: 10px;
@@ -130,7 +197,7 @@ body {
   width: 100%;
   justify-content: center;
   flex-direction: column;
-  background-color: $bg-color;
+  background-color: $dark-box-bg;
 }
 
 .remove {
@@ -148,7 +215,7 @@ body {
   bottom: 0;
   padding: 5px 100px;
   font-size: 16px;
-  background-color: $bg-color;
+  background-color: $dark-box-bg;
   width: auto;
 }
 
@@ -160,7 +227,7 @@ body {
 }
 
 #input-box {
-  background-color: $bg-color;
+  background-color: $dark-box-bg;
   font-family: Arial, Helvetica, sans-serif;
   width: 78%;
   margin: 0 30px 40px 30px;
@@ -225,7 +292,7 @@ body {
   }
 
   .chatbox {
-    background-color: $bg-color;
+    background-color: $dark-box-bg;
     height: 80vh;
     width: 90vw;
     position: relative;
